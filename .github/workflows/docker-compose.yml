@@ -30,8 +30,8 @@ jobs:
          username: ${{ secrets.USERNAME }}
         #port: ${{ secrets.PORT }}
          key: ${{ secrets.KEY }}
-         source: "docker-compose.yml"
-         target: "/home/ubuntu/docker_compose"
+         source: "server/Dockerfile"
+         target: "test"
         
 #       - name: Second executing remote ssh commands using ssh key
 #         uses: appleboy/ssh-action@master
