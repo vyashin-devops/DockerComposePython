@@ -11,6 +11,8 @@ FROM python:latest
 # Here we put files at the image '/server/' folder.
 ADD server.py /server/
 ADD index.html /server/
+ADD img1.jpg /server/
+ADD img2.jpg /server/
 
 # I would like to introduce something new, the 'WORKDIR' command.
 # This command changes the base directory of your image.
