@@ -30,7 +30,7 @@ jobs:
          username: ${{ secrets.USERNAME }}
         #port: ${{ secrets.PORT }}
          key: ${{ secrets.KEY }}
-         source: "server/*"
+         source: "./docker-compose.yml"
          target: "/home/ubuntu/docker_compose"
         
 #       - name: Second executing remote ssh commands using ssh key
