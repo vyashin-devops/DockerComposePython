@@ -1,4 +1,4 @@
-name: Docker-Flask-Application-EC2
+name: Docker-Compose-Flask-App
 
 on:
   push:
