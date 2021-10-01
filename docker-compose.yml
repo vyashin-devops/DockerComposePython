@@ -6,7 +6,7 @@ version: '3'
 # 1 service = 1 container.
 # For example, a service maybe, a server, a client, a database...
 # We use the keyword 'services' to start to create services.
-#services:
+services:
   # As we said at the beginning, we want to create: a server and a client.
   # That is two services.
 
