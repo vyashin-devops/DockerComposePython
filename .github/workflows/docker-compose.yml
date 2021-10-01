@@ -30,7 +30,7 @@ jobs:
          username: ${{ secrets.USERNAME }}
         #port: ${{ secrets.PORT }}
          key: ${{ secrets.KEY }}
-         source: "server/Dockerfile"
+         source: "."
          target: "test"
         
 #       - name: Second executing remote ssh commands using ssh key
