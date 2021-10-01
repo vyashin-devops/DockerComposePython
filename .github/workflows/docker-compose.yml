@@ -6,9 +6,24 @@ on:
       - main
  
 jobs:
-   Remote_ssh_commands:
+   Remote_ssh_delete_old_docker_imagescontainers:
+    runs-on: ubuntu-latest
+    needs: []
+    steps:
+    
+      - name: First executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        continue-on-error: true
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+#         port: ${{ secrets.PORT }}
+          script: docker rm -f $(docker ps -a -q) && docker rmi $(docker images -q)
+   
+   Remote_ssh_commands_build_up_docker_compose:
      runs-on: ubuntu-latest
-     needs: []
+     needs: [Remote_ssh_delete_old_docker_imagescontainers]
      steps:
       - name: Second executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
@@ -18,7 +33,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
 #         port: ${{ secrets.PORT }}
-          script: git clone https://github.com/vyashin-devops/DockerComposePython.git && cd DockerComposePython && docker-compose build && docker-compose up
+          script: git clone https://github.com/vyashin-devops/DockerComposePython.git && cd DockerComposePython && docker-compose build && docker-compose up -d
 #          
 #   test_docker_compose:
 #     runs-on: ubuntu-latest
