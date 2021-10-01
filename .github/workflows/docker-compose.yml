@@ -12,9 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
+        run: docker-compose build
+      - name: Up the stack  
         run: docker-compose up -d
-      #- name: Test
-      #  run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/
+      - name: Test
+        run: curl http://localhost:1234/
+        # run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/
   
   Build_and_push_to_Docker_client:
     runs-on: ubuntu-latest
