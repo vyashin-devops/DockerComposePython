@@ -1,3 +1,13 @@
+#----------------------------------------------------------------------------------------------------------------------
+# GitHub Action Workflow to build copy Dockerfiles and Docker-Compose to EC2 Instance and run docker-compoce.yml file
+# Copy to EC2, I do it through GIT CLONE on EC2 Instance
+#
+# Version      Date        Info
+# 1.0          2021        Initial Version
+#
+# Made by Vyacheslav Yashin Copyleft (c)  2021 
+#----------------------------------------------------------------------------------------------------------------------
+
 name: Docker-Compose-Flask-App
 
 on:
@@ -44,7 +54,13 @@ jobs:
           key: ${{ secrets.KEY }}
 #         port: ${{ secrets.PORT }}
           script: git clone https://github.com/vyashin-devops/DockerComposePython.git && cd DockerComposePython && docker-compose build && docker-compose up -d
-#          
+#   
+
+
+
+
+
+
 #   test_docker_compose:
 #     runs-on: ubuntu-latest
 #     steps:
