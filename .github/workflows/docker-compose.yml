@@ -18,7 +18,31 @@ jobs:
       - name: Test
         run: curl http://localhost:1234/
         # run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/
-  
+ 
+  Remote_ssh_commands:
+    runs-on: ubuntu-latest
+    needs: []
+    steps:
+      - name: First executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        continue-on-error: true
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+#         port: ${{ secrets.PORT }}
+          script: docker rm -f $(docker ps -a -q) && docker rmi $(docker images -q)
+          #      ^ docker kill $(docker ps -q) && 
+        
+      - name: Second executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        #continue-on-error: true
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+#         port: ${{ secrets.PORT }}
+          script: docker run --name flaskindocker -d -p 5001:5001 yashinv/flaskindocker 
 #   Build_and_push_to_Docker_client:
 #     runs-on: ubuntu-latest
 #     needs: [test_docker_compose]
